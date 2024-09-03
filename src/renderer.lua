@@ -29,9 +29,4 @@ function Renderer.draw_stuff()
     end
 end
 
-local loot_priority = Settings.get().loot_priority
-if loot_priority == 0 then
-elseif loot_priority == 1 then
-end
-
 return Renderer

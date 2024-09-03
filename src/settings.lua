@@ -7,7 +7,6 @@ local settings = {
    behavior = 0,
    rarity = 0,
    distance = 2,
-   loot_priority = 0,
    skip_dropped = false,
    ga_count = 0,
    unique_ga_count = 0,
@@ -34,7 +33,8 @@ function Settings.update()
       rarity = gui.elements.general.rarity_combo:get(),
       distance = gui.elements.general.distance_slider:get(),
       skip_dropped = gui.elements.general.skip_dropped_toggle:get(),
-      loot_priority = gui.elements.general.loot_priority_combo:get(), -- Get the value from the new combobox
+      closest_dropped = gui.elements.general.loot_closest_toggle:get(),
+      best_dropped = gui.elements.general.loot_best_toggle:get(),
 
       -- Affix Settings
       ga_count = gui.elements.affix_settings.greater_affix_slider:get(),
@@ -52,6 +52,7 @@ function Settings.update()
       sigils = gui.elements.item_types.sigil_items_toggle:get(),
       cinders = gui.elements.item_types.cinders_toggle:get(),
       event_items = gui.elements.item_types.event_items_toggle:get(),
+
 
       -- Debug
       draw_wanted_items = gui.elements.debug.draw_wanted_toggle:get()

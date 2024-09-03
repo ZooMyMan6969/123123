@@ -217,44 +217,4 @@ function ItemManager.get_best_item()
    return scored_items[1]
 end
 
-local loot_priority = Settings.get().loot_priority
-if loot_priority == 0 then
-    -- Logic for "Closest First"
-    function ItemManager.get_nearby_item()
-        local items = actors_manager:get_all_items()
-        local fetched_items = {}
-
-        for _, item in pairs(items) do
-            if ItemManager.check_want_item(item, false) then
-                table.insert(fetched_items, item)
-            end
-        end
-
-        table.sort(fetched_items, function(x, y)
-            return Utils.distance_to(x) < Utils.distance_to(y)
-        end)
-
-        return fetched_items[1]
-    end
-elseif loot_priority == 1 then
-    -- Logic for "Best First"
-    function ItemManager.get_best_item()
-        local items = actors_manager:get_all_items()
-        local scored_items = {}
-
-        for _, item in ipairs(items) do
-            if ItemManager.check_want_item(item, false) then
-                local item_object = { Item = item, Score = ItemManager.calculate_item_score(item) }
-                table.insert(scored_items, item_object)
-            end
-        end
-
-        table.sort(scored_items, function(x, y)
-            return x.Score > y.Score
-        end)
-
-        return scored_items[1]
-    end
-end
-
 return ItemManager
